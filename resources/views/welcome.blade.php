@@ -37,21 +37,8 @@
         <!-- Template Main CSS File -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     </head>
-    <body class="antialiased">
-        
-            {{-- @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif --}}
+    <body class="antialiased">      
+            
 
       <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
@@ -63,7 +50,14 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          {{-- <li><a class="nav-link scrollto active" href="{{ route('login') }}">Login</a></li>           --}}
+          @if (Route::has('login'))                
+              @auth                  
+                  <li><a class="nav-link scrollto active" href="{{ url('/dashboard') }}">Dashboard</a></li>                  
+              @else                  
+                  <li><a class="nav-link scrollto active" href="{{ route('login') }}">Login</a></li>                  
+              @endauth
+                
+            @endif
           {{-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="#">Drop Down 1</a></li>
@@ -95,7 +89,16 @@
         <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
           <h1>Ven y Crea con Nosotros</h1>
           <h2>Accusantium quam, aliquam ultricies eget tempor id, aliquam eget nibh et. Maecen aliquam, risus at semper. Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum.</h2>
-          {{-- <div><a href="{{ route('login') }}" class="btn-get-started scrollto">Inicia Aquí</a></div> --}}
+          <div>
+            @if (Route::has('login'))                
+              @auth
+                  <a href="{{ url('/dashboard') }}" class="btn-get-started scrollto">Dashboar</a>
+              @else
+                  <a href="{{ route('login') }}" class="btn-get-started scrollto">Inicia Aquí</a>
+              @endauth
+                
+            @endif
+          </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img">
           <img src="assets/img/hero-img.png" class="img-fluid" alt="">
@@ -202,7 +205,7 @@
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Dashboard</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>

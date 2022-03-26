@@ -1,0 +1,11 @@
+.navbar.default-layout-navbar {
+    background: linear-gradient(85deg, #392c70, #6a005b);
+}
+
+/* .navbar.default-layout-navbar .navbar-brand-wrapper, .navbar.default-layout-navbar .navbar-menu-wrapper {
+    background: linear-gradient(85deg, #392c70, #6a005b);
+} */
+
+.navbar.default-layout-navbar .navbar-menu-wrapper .navbar-toggler {
+    color: white;
+}

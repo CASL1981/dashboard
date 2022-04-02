@@ -17,8 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::Group(['middleware' => 'auth'], function(){
+    Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::view('dashboard/users', 'livewire.user.index')->name('dashboard.users');
+
+});

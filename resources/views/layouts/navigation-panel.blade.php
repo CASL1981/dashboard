@@ -27,9 +27,9 @@
       </a>
       <div class="collapse" id="page-layouts">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="boxed-layout.html">Boxed</a></li>
-          <li class="nav-item"> <a class="nav-link" href="rtl-layout.html">RTL</a></li>
-          <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="horizontal-menu.html">Horizontal Menu</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('dashboard.users') }}">Usuarios</a></li>
+          <li class="nav-item"> <a class="nav-link" href="#">RTL</a></li>
+          <li class="nav-item"> <a class="nav-link" href="#">Horizontal Menu</a></li>
         </ul>
       </div>
     </li>      

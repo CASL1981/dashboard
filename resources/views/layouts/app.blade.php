@@ -17,10 +17,13 @@
 
     <!-- Styles -->
     {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}">    --}}
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">   
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
 
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('images/icon.jpg') }}" />
+    @livewireStyles
+    @stack('styles') 
 </head>
 
 <body class="sidebar-absolute sidebar-hidden">
@@ -55,19 +58,53 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+  @livewireScripts
   <!-- plugins:js -->
   <script src="{{ asset('vendors/js/vendor.bundle.base.js') }}"></script>
   <script src="{{ asset('vendors/js/vendor.bundle.addons.js') }}"></script>
   <!-- endinject -->
   <!-- inject:js -->  
-  <script src="{{ asset('js/off-canvas.js') }}"></script>
-  <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
+  {{-- <script src="{{ asset('js/off-canvas.js') }}"></script> --}}
+  {{-- <script src="{{ asset('js/hoverable-collapse.js') }}"></script> --}}
   <script src="{{ asset('js/misc.js') }}"></script>
   <script src="{{ asset('js/settings.js') }}"></script>
-  <script src="{{ asset('js/todolist.js') }}"></script>
+  <script src="{{ asset('js/file-upload.js') }}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{{ asset('js/dashboard.js') }}"></script>
   <script src="{{ asset('js/app.js') }}"></script>
+  @stack('scripts')
+  <script>
+    window.livewire.on('alert', param => {
+        toastr.options = { 
+          "closeButton" : true,          
+          "progressBar" : true
+        }
+        
+        toastr[param['type']](param['message']);
+
+        // Display a warning toast, with no title
+        // toastr.warning('My name is Inigo Montoya. You killed my father, prepare to die!')
+
+        // Display a success toast, with a title
+        // toastr.success('Have fun storming the castle!', 'Miracle Max Says')
+
+        // Display an error toast, with a title
+        // toastr.error('I do not think that word means what you think it means.', 'Inconceivable!')
+
+        // Immediately remove current toasts without using animation
+        // toastr.remove()
+
+        // Remove current toasts using animation
+        // toastr.clear()
+
+        // Override global options
+        // toastr.success('We do have the Kapua suite available.', 'Turtle Bay Resort', {timeOut: 5000})
+    });
+
+    window.livewire.on('CloseModal', param => {
+        $(param['modalName']).modal('hide');
+    });
+  </script> 
 </body>
 </html>

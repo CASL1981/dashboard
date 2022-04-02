@@ -38,11 +38,13 @@
               </div>
             </div>
             <div class="my-2 d-flex justify-content-between align-items-center">
-              <div class="form-check">
-                <label class="form-check-label text-muted">
+              <div class="form-group">
+                <div class="form-check form-check-flat form-check-primary">
+                  <label class="form-check-label"></label>
                   <input type="checkbox" class="form-check-input" id="remember_me" name="remember" >
                   {{ __('Remember Me') }}
-                </label>
+                  <i class="input-helper"></i>                  
+                </div>
               </div>
               @if (Route::has('password.request'))
                 <a class="auth-link text-black" href="{{ route('password.request') }}">

@@ -25,6 +25,8 @@ require __DIR__.'/auth.php';
 
 Route::Group(['middleware' => 'auth'], function(){
     Route::view('dashboard', 'dashboard')->name('dashboard');
-    Route::view('dashboard/users', 'livewire.user.index')->name('dashboard.users');
-
+    Route::view('dashboard/users', 'livewire.user.index')->name('dashboard.users')
+    ->middleware('can_view:usuario');
+    Route::view('dashboard/roles', 'livewire.role.index')->name('dashboard.roles')
+    ->middleware('can_view:role');
 });

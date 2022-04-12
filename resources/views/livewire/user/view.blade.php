@@ -12,21 +12,21 @@
         </div>
         <div class="col-sm-12 col-md-4">
           <div class="btn-group float-right" role="group" aria-label="Basic example">
-            {{-- @can('usuario update') --}}
+            @can('usuario toggle')
                 <button class="btn btn-sm btn-primary" wire:click.prevent="$emit('toggleUser')" title="Activar o Desactivar Usuario"
                 @if ($bulkDisabled) disabled @endif><i class="fa fa-exclamation text-with"></i>
                 </button>                
-            {{-- @endcan --}}
-            {{-- @can('usuario update') --}}
+            @endcan
+            @can('usuario update')
                 <button class="btn btn-sm btn-primary" wire:click="edit()" title="Modificar Usuario"
                 @if ($bulkDisabled) disabled @endif><i class="fa fa-edit text-with"></i>
                 </button>                    
-            {{-- @endcan --}}
-            {{-- @can('usuario create') --}}
-              <button class="btn btn-sm btn-primary " wire:click="$emit('ShowModal')" title="Adicionar Registro">
+            @endcan
+            @can('usuario create')
+              <button class="btn btn-sm btn-primary " wire:click="$emit('ShowModalUser')" title="Adicionar Registro">
                 <i class="fa fa-plus text-with"></i>
               </button>
-            {{-- @endcan --}}
+            @endcan
           </div>
         </div>
       </div>
@@ -74,7 +74,7 @@
                     <td>{{ $item->email }}</td>
                     <td>{{ $item->area }}</td>
                     <td><label class="text-{{ $item->status_color }}">{{ $item->status ? 'Activo' : 'Inacivo' }}</label></td>
-                    <td>{{ $item->role_id }}</td>
+                    <td>{{ $item->roles()->first()->name ?? 'N/A'}}</td>
                     <td>{{ $item->destination_id }}</td>
                     <td class="py-1">
                       <img src="{{ asset($item->image_user) }}" alt="imagen">

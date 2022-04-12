@@ -4,7 +4,7 @@
     'sortDirection' => '',
     ])
 
-<th wire:click="sortBy('{{$field}}')" style="cursor: pointer;" class="p-2">{{$slot}}
+<th wire:click="sortBy('{{$field}}')" style="cursor: pointer;" {{ $attributes->merge(['class' => 'p-2']) }} >{{$slot}}
     @if ($sortField == $field && $sortDirection == 'asc')
         <i class="fas fa-sort-up float-right"></i>                
     @elseif ($sortField == $field && $sortDirection == 'desc')

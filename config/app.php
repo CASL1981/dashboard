@@ -163,9 +163,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
+         * Package Service Providers Terceros
          */
-        
+        Spatie\Permission\PermissionServiceProvider::class,
         /*
          * Application Service Providers...
          */

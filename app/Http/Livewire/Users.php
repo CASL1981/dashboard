@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Spatie\Permission\Models\Role;
 
 class Users extends Component
 {
@@ -49,14 +50,17 @@ class Users extends Component
         ->search('status', $this->keyWord)
         ->search('email', $this->keyWord)                        
         ->orderBy($this->sortField, $this->sortDirection)
-        ->paginate(10);
+        ->with('roles')
+        ->paginate(10);      
+
+        $roles = Role::all();
         
-        return view('livewire.user.view', compact('users'));
+        return view('livewire.user.view', compact('users', 'roles'));
     }
 
     public function store()
     {
-        // can('usuario create');
+        can('usuario create');
         $validate = $this->validate();
     	
         $fillable = [
@@ -67,7 +71,7 @@ class Users extends Component
         $validate = array_merge($validate, $fillable);
         $user = User::create($validate);
         //Asignamos el role seleccinado
-        // $user->assignRole($this->role);
+        $user->assignRole($this->role_id);
 
         // $this->resetInput();
         // $this->emit('CloseModal', ['modalName' => '#ModalUser']); // Close model to using to jquery
@@ -77,7 +81,7 @@ class Users extends Component
 
     public function edit()
     {
-        // can('usuario update');
+        can('usuario update');
         $this->emit('ShowModalUser');
         $record = User::findOrFail($this->selected_id);
         
@@ -99,13 +103,12 @@ class Users extends Component
 
     public function update()
     {
-        // can('usuario update');
+        can('usuario update');
         $validate = $this->validate();        
         if ($this->selected_id) {
             
     		$record = User::find($this->selected_id);            
 
-            // dd($validate['profile_photo']);
             if($validate['profile_photo']){
                 $this->removeImage($record->profile_photo);
                 $photo = $this->profile_photo->store('profile_photo', 'public');  
@@ -127,7 +130,7 @@ class Users extends Component
             $record->update($validate);
             
             //Asignamos el rol seleccionado
-            // $record->syncRoles($this->role);
+            $record->syncRoles($this->role_id);
             
             $this->resetInput();
             $this->identificador = rand();
@@ -139,10 +142,30 @@ class Users extends Component
 
     public function toggleUser()
     {
-        // can('usuario update');
-        if ($this->selected_id) {
-            $user = User::find($this->selected_id);
-            $user->status ? $user->update(['status' => false]) : $user->update(['status' => true]);            
+        can('usuario toggle');
+        // if ($this->selected_id) {
+        //     $user = User::find($this->selected_id);
+        //     $user->status ? $user->update(['status' => false]) : $user->update(['status' => true]);            
+        // }
+
+        if (count($this->selectedModel)) {
+            //consultamos todos los status y consultamos los modelos de los usuarios seleccionado
+            $status = User::whereIn('id', $this->selectedModel)->get('status')->toArray();
+            $record = User::whereIn('id', $this->selectedModel);            
+            
+            if($status[0]['status']) {
+                $record->update([ 'status' => false ]); //actualizamos los modelos
+                
+                $this->selectedModel = []; //limpiamos todos los usuarios seleccionados
+                $this->selectAll = false;
+            } else {
+                $record->update([ 'status' => true ]);
+                
+                $this->selectedModel = [];
+                $this->selectAll = false;
+            }
+        } else {
+            $this->emit('alert', ['type' => 'warning', 'message' => 'Selecciona un Usuario']);
         }
     }
 
@@ -153,7 +176,6 @@ class Users extends Component
 
     public function removeImage($profile_photo)
     {
-        // dd($profile_photo);
         if(! $profile_photo){
             return;
         }       

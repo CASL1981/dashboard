@@ -11,17 +11,27 @@
         <form enctype="multipart/form-data">
             <div class="card-body">
                 <div class="row">
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-3">
                         <label for="firstname">Nombres</label>
                         <input type="text" wire:model="firstname" class="form-control form-control-sm defaultconfig-3" maxlength="100">
                         @error('firstname') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-3">
                       <label for="lasstname">Apellidos</label>
                       <input type="text" wire:model="lastname" class="form-control form-control-sm defaultconfig-3" maxlength="100">
                       @error('lastname') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
+                        <label for="area">Role</label>
+                          <select class="form-control" wire:model="role_id" name="role_id" id="role_id" >
+                              <option value="">-- Seleccione --</option>                              
+                              @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                              @endforeach
+                          </select>
+                          @error('role_id') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group col-md-3">
                         <label for="area">Area</label>
                           <select class="form-control" wire:model="area" name="area" id="area" >
                               <option value="">-- Seleccione --</option>

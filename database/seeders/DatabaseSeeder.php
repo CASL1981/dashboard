@@ -18,5 +18,7 @@ class DatabaseSeeder extends Seeder
         Storage::makeDirectory('profile_photo');
         
         \App\Models\User::factory(10)->create();
+
+        $this->call(UserSeeder::class);
     }
 }

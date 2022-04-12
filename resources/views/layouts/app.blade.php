@@ -58,7 +58,7 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
-  @livewireScripts
+  
   <!-- plugins:js -->
   <script src="{{ asset('vendors/js/vendor.bundle.base.js') }}"></script>
   <script src="{{ asset('vendors/js/vendor.bundle.addons.js') }}"></script>
@@ -72,7 +72,15 @@
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{{ asset('js/dashboard.js') }}"></script>
+  
+  {{-- liviewir and turbolinks --}}
+  @livewireScripts
+  {{-- <script type="module">import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';</script> --}}
+  <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
+  {{--  end liviewir and turbolinks --}}
+  
   <script src="{{ asset('js/app.js') }}"></script>
+
   @stack('scripts')
   <script>
     window.livewire.on('alert', param => {

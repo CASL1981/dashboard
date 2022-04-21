@@ -16,7 +16,7 @@ class Roles extends Component
 
     public $name;    
     public $role;
-    public $show = false;
+    // public $show = false;
 
     protected $listeners = ['deleteRole'];
 
@@ -43,11 +43,11 @@ class Roles extends Component
         return view('livewire.role.view', compact('roles'));
     }
 
-    public function closed()
-    {
-        $this->cancel();
-        $this->show = false;
-    }
+    // public function closed()
+    // {
+    //     $this->cancel();
+    //     $this->show = false;
+    // }
 
     public function store()
     {

@@ -142,11 +142,7 @@ class Users extends Component
 
     public function toggleUser()
     {
-        can('usuario toggle');
-        // if ($this->selected_id) {
-        //     $user = User::find($this->selected_id);
-        //     $user->status ? $user->update(['status' => false]) : $user->update(['status' => true]);            
-        // }
+        can('usuario toggle');        
 
         if (count($this->selectedModel)) {
             //consultamos todos los status y consultamos los modelos de los usuarios seleccionado

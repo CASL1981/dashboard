@@ -12,7 +12,8 @@ trait TableLivewire
     public $selectAll = false;
     public $bulkDisabled = true;
     public $selected_id;
-    public $keyWord;    
+    public $keyWord;
+    public $show = false; //varible que controla el modal
     
     protected $paginationTheme = 'bootstrap';
     
@@ -39,6 +40,12 @@ trait TableLivewire
     public function cancel()
     {
         $this->resetInput();
+    }
+
+    public function closed()
+    {
+        $this->cancel();
+        $this->show = false;
     }
     
     private function resetInput()

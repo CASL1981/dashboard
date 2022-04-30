@@ -4,16 +4,16 @@
       <x-slot name="title">Centros de Costos</x-slot>
       <x-slot name="button">
         <div class="btn-group float-right" role="group" aria-label="Basic example">          
-          {{-- @can('role update') --}}
+          @can('destination update')
             <button class="btn btn-sm btn-secundary" wire:click="edit()" 
             @if ($bulkDisabled) disabled @endif><i class="fa fa-edit text-primary"></i>
             </button>
-          {{-- @endcan --}}
-          {{-- @can('role create') --}}
+          @endcan
+          @can('destination create')
           <button class="btn btn-sm btn-secundary" wire:click="$set('show', true)">
               <i class="fa fa-plus text-primary"></i>
           </button>
-          {{-- @endcan --}}
+          @endcan
         </div>
       </x-slot>
       <x-table.table>

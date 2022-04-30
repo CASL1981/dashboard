@@ -35,7 +35,7 @@ class Destinations extends Component
         ->search('costcenter', $this->keyWord)
         ->search('address', $this->keyWord)
         ->orderBy($this->sortField, $this->sortDirection)
-        ->paginate(5);
+        ->paginate(10);
 
         return view('basics::livewire.destination.view', compact('destinations'));
     }

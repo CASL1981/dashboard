@@ -111,7 +111,7 @@ class Users extends Component
 
             if($validate['profile_photo']){
                 $this->removeImage($record->profile_photo);
-                $photo = $this->profile_photo->store('profile_photo', 'public');  
+                $photo = $this->profile_photo->store('profile_photo', 'public');                
                 $fillable = [                
                     'status' => $this->status, // se asigna el status actual
                     'profile_photo' => $photo, //guardamos la url de la imagen

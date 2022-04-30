@@ -27,13 +27,15 @@
         </a>
         <div class="collapse" id="page-layouts">
           <ul class="nav flex-column sub-menu">
-            @can('usuario read') 
+            @can('destination read')
               <li class="nav-item"><a class="nav-link" href="{{ route('basic.destinations') }}">Centros de Costos</a></li>
             @endcan
-            @can('role read')
-              <li class="nav-item"> <a class="nav-link" href="#">####</a></li>              
+            @can('employee read')
+              <li class="nav-item"> <a class="nav-link" href="{{ route('basic.employees') }}">Empleados</a></li>
             @endcan
-            {{-- <li class="nav-item"> <a class="nav-link" href="#">Horizontal Menu</a></li> --}}
+            @can('client read')
+              <li class="nav-item"> <a class="nav-link" href="{{ route('basic.clients') }}">Terceros</a></li>
+            @endcan            
           </ul>
         </div>
       </li>      

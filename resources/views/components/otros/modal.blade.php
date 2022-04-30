@@ -44,13 +44,13 @@ $maxWidth = [
 
     <div class="modal-dialog{{ $maxWidth }}">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: rgb(205, 93, 221); color:#fff;">
+            <div class="modal-header p-3" style="background-color: rgb(205, 93, 221); color:#fff;">
                 <h5 class="modal-title" id="exampleModalLabel">{{ $title }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body p-0">
                 {{ $slot }}
             </div>                
             <div class="modal-footer">

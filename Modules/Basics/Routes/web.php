@@ -18,8 +18,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::prefix('basics')->group(function() {
         // Route::get('/', 'BasicsController@index')->name('basics');
         Route::get('/', 'BasicsController@index')->name('dashboard.basics');
-        Route::view('dashboard/destinations', 'basics::livewire.destination.index')->name('basic.destinations');
-        // Route::view('dashboard/roles', 'livewire.role.index')->name('dashboard.roles')
-        // ->middleware('can_view:role');
+        Route::view('destinations', 'basics::livewire.destination.index')
+        ->name('basic.destinations')->middleware('can_view:destination');
+        Route::view('employees', 'basics::livewire.employee.index')
+        ->name('basic.employees')->middleware('can_view:employee');
+        Route::view('clients', 'basics::livewire.client.index')
+        ->name('basic.clients')->middleware('can_view:client');
     });
 });

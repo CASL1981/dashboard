@@ -1,5 +1,5 @@
 <div class="col-12">
-    <div class="table-responsive">
+    <div class="table-responsive tableFixHead">
         <table id="users-list" class="table">
         <thead>
             <tr>{{ $head }}</tr>

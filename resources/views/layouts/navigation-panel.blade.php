@@ -3,12 +3,12 @@
     <li class="nav-item nav-profile">
       <div class="nav-link">
         <div class="profile-image">
-          <img src="{{ asset('images/profile/face5.jpg') }}" alt="image"/>
+          <img src="{{ asset(Auth()->user()->image_user) }}" alt="image"/>
         </div>
         <div class="profile-name">
-          <p class="name">{{ Auth::user()->name }}</p>
+          <p class="name">{{ Auth()->user()->firstname }}</p>
           <p class="designation">
-            Super Admin
+            {{ Auth()->user()->roles()->first()->name ?? 'N/A' }}
           </p>
         </div>
       </div>

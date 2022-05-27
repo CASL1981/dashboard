@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,8 +18,11 @@ class DatabaseSeeder extends Seeder
     {
         Storage::deleteDirectory('profile_photo');
         Storage::makeDirectory('profile_photo');
+                
         
-        \App\Models\User::factory(10)->create();
+        User::factory(10)->create()->each(function($u){
+            Profile::create(['user_id' => $u->id]);
+        });
 
         $this->call(UserSeeder::class);
     }

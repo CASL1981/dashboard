@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
@@ -22,13 +23,19 @@ class UserSeeder extends Seeder
             'email' => 'contabilidad@coodescor.org.co'
         ]);
 
+        Profile::create(['user_id' => $administrador->id]);
+        
         $vendedor = User::factory()->create([
             'email' => 'vendedor@coodescor.org.co'
         ]);
-
+        
+        Profile::create(['user_id' => $vendedor->id]);
+        
         $cliente = User::factory()->create([
             'email' => 'cliente@coodescor.org.co'
         ]);
+        
+        Profile::create(['user_id' => $cliente->id]);
 
         $admin = Role::create(['name' => 'administrador']);
         $seller = Role::create(['name' => 'vendedor']);

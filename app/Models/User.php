@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->profile_photo ? Storage::url($this->profile_photo) : Storage::url('defaultUser.png');
     }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }

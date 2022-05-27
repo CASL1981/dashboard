@@ -26,7 +26,8 @@ class BasicsDatabaseSeeder extends Seeder
         $modules = [
             'destination',
             'employee',
-            'client'
+            'client',
+            'payment'
         ];
 
         //CRUD

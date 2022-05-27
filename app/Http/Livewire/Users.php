@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Profile;
 use App\Models\User;
 use App\Traits\TableLivewire;
 use Illuminate\Support\Facades\Storage;
@@ -72,6 +73,10 @@ class Users extends Component
         $user = User::create($validate);
         //Asignamos el role seleccinado
         $user->assignRole($this->role_id);
+
+        //Creamos el perfil
+        $perfil = new Profile();
+        $perfil->create(['user_id' => $user->id]);
 
         // $this->resetInput();
         // $this->emit('CloseModal', ['modalName' => '#ModalUser']); // Close model to using to jquery

@@ -14,3 +14,8 @@
 table  { border-collapse: collapse; width: 100%; }
 /* th, td { padding: 8px 16px; } */
 th     { background:#eee; }
+
+.settings-panel { 
+    right: -600px;
+    width: 600px; 
+}

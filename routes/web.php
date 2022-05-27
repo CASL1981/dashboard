@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Profiles;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,11 @@ Route::Group(['middleware' => 'auth'], function(){
     ->middleware('can_view:usuario');
     Route::view('dashboard/roles', 'livewire.role.index')->name('dashboard.roles')
     ->middleware('can_view:role');
+    Route::view('dashboard/profile', 'livewire.profile.index')->name('dashboard.profile');    
 });
+
+Route::get('/profile/edit', function () {
+    return;
+});
+
+Route::get('/profile/edit', Profiles::class);

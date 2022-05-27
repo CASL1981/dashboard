@@ -10114,7 +10114,7 @@ html {
   line-height: 36px;
 } /* Footer */ .footer {
   background: #f2f2f2;
-  padding: 30px 1rem;
+  padding: 10px 1rem;
   transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;
   -webkit-transition: all 0.25s ease;
@@ -16237,4 +16237,7 @@ dl li {
     background: linear-gradient(85deg, #392c70, #6a005b);
 } .navbar.default-layout-navbar .navbar-menu-wrapper .navbar-toggler {
     color: white;
-} .tableFixHead          { overflow: auto; height: 400px; } .tableFixHead thead th { position: -webkit-sticky; position: sticky; top: 0; z-index: 1; } .tableFixHead tbody th { position: -webkit-sticky; position: sticky; left: 0; } /* Just common table stuff. Really. */ table  { border-collapse: collapse; width: 100%; } /* th, td { padding: 8px 16px; } */ th     { background:#eee; }
+} .tableFixHead          { overflow: auto; height: 400px; } .tableFixHead thead th { position: -webkit-sticky; position: sticky; top: 0; z-index: 1; } .tableFixHead tbody th { position: -webkit-sticky; position: sticky; left: 0; } /* Just common table stuff. Really. */ table  { border-collapse: collapse; width: 100%; } /* th, td { padding: 8px 16px; } */ th     { background:#eee; } .settings-panel { 
+    right: -600px;
+    width: 600px; 
+}

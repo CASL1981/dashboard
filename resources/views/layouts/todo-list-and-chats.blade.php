@@ -147,4 +147,4 @@
       </div> --}}
       <!-- chat tab ends -->
     </div>
-  </div>
+</div>

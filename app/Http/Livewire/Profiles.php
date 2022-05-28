@@ -56,7 +56,7 @@ class Profiles extends Component
 
     public function cancel()
     {
-        
+        $this->show = false;
     }
 
     public function closed()

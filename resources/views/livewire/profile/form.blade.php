@@ -1,6 +1,23 @@
 
-<div id="updateperfil-right-sidebar" class="settings-panel" wire:ignore.self>
-  <i class="settings-close fa fa-times"></i>
+<div id="updateperfil-right-sidebar" class="settings-panel"
+
+x-data="{ show: @entangle('show') }"
+x-init="() => {
+
+    let el = document.querySelector('#updateperfil-right-sidebar')   
+
+    $watch('show', value => {
+        if (value) {            
+            $('#updateperfil-right-sidebar').toggleClass('open');            
+        } else {
+            $('#updateperfil-right-sidebar').removeClass('open');            
+        }
+    });    
+}"
+wire:ignore.self
+tabindex="-1"
+>
+  <i class="settings-close fa fa-times" wire:click="$set('show', false)"></i>
   <ul class="nav nav-tabs" id="setting-panel" role="tablist">
     <li class="nav-item">
       <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">Actualizar Perfil</a>

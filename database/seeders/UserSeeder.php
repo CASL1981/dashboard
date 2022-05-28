@@ -20,7 +20,8 @@ class UserSeeder extends Seeder
     {
         Storage::disk('public')->deleteDirectory('profile_photo');
         $administrador = User::factory()->create([
-            'email' => 'contabilidad@coodescor.org.co'
+            'email' => 'contabilidad@coodescor.org.co',
+            'status' => true
         ]);
 
         Profile::create(['user_id' => $administrador->id]);

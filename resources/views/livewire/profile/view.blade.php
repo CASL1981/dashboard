@@ -86,7 +86,7 @@
               </div>
               <div>
                 {{-- <button class="btn btn-primary" wire:click="$set('show', true)">Actualizar</button> --}}
-                <button class="btn btn-primary" id="perfilupdate">Actualizar</button>
+                <button class="btn btn-primary" id="perfilupdate" wire:click="$set('show', true)">Actualizar</button>
               </div>
             </div>
             <div class="mt-4 py-2 border-top border-bottom">
@@ -198,7 +198,7 @@
     @include('livewire.profile.form')
 </div>
 @push('scripts')
-    <script>
+    {{-- <script>
       (function($) {
       'use strict';
       $(function() {
@@ -215,5 +215,5 @@
        
       });
     })(jQuery);
-    </script>
+    </script> --}}
 @endpush

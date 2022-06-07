@@ -38,7 +38,7 @@ class ClientFactory extends Factory
 			'vendedor_id' => 1,
 			'pricelist_id' => 1,
 			'shoppingcontact' => 'Rango',
-			'conditionpayment_id' => 1,
+			'conditionpayment_id' => $this->faker->numberBetween(1, 20),
         ];
     }
 }

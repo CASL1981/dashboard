@@ -17,6 +17,12 @@ class Employees extends Component
     public $cel_phone, $entry_date, $email, $gender, $birth_date, $location_id, $photo_path, $vendedor;
 
     protected $listeners = ['toggleEmployee'];
+
+    public function mount()
+    {                   
+        $this->model = 'Modules\Basics\Entities\Employee';
+        $this->exportable ='App\Exports\EmployeesExport';
+    }
     
     protected function rules() 
     {
@@ -42,11 +48,9 @@ class Employees extends Component
     {
         $this->bulkDisabled = count($this->selectedModel) < 1;
 
-        $employees = Employee::search('identification', $this->keyWord)
-        ->search('first_name', $this->keyWord)
-        ->search('last_name', $this->keyWord)
-        ->orderBy($this->sortField, $this->sortDirection)
-        ->paginate(20);
+        $employees = new Employee();
+
+        $employees = $employees->QueryTable($this->keyWord, $this->sortField, $this->sortDirection)->paginate(20);
 
         return view('basics::livewire.employee.view', compact('employees'));
     }
@@ -125,10 +129,5 @@ class Employees extends Component
         } else {
             $this->emit('alert', ['type' => 'warning', 'message' => 'Selecciona un Usuario']);
         }
-    }
-
-    public function updatedSelectAll($value)
-    {
-        $value ? $this->selectedModel = Employee::pluck('id') : $this->selectedModel = [];
     }
 }

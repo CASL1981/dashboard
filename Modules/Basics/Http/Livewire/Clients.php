@@ -17,7 +17,7 @@ class Clients extends Component
     public $identification, $first_name, $last_name, $client_name, $status, $type_document, $address, $phone; 
     public $cel_phone, $entry_date, $email, $gender, $birth_date, $limit, $vendedor_id, $pricelist_id;
     public $shoppingcontact, $conditionpayment_id;
-    public $vendedores;
+    public $vendedores;    
 
     protected $listeners = ['toggleClient'];
     
@@ -25,6 +25,9 @@ class Clients extends Component
     {
         $this->vendedores = Employee::where('vendedor', true)->where('status', true)
                         ->pluck('first_name', 'identification')->toArray();
+                        
+        $this->model = 'Modules\Basics\Entities\Client';
+        $this->exportable ='App\Exports\ClientsExport';
     }
 
     protected function rules() 
@@ -54,14 +57,11 @@ class Clients extends Component
     {
         $this->bulkDisabled = count($this->selectedModel) < 1;
 
-        $clients = Client::search('identification', $this->keyWord)
-        ->search('first_name', $this->keyWord)
-        ->search('last_name', $this->keyWord)
-        ->search('client_name', $this->keyWord)
-        ->orderBy($this->sortField, $this->sortDirection)
-        ->paginate(20);
+        $clients = new Client();
 
-        return view('basics::livewire.client.view', compact('clients'));
+        $clients = $clients->QueryTable($this->keyWord, $this->sortField, $this->sortDirection)->paginate(20);
+
+        return view('basics::livewire.client.view', compact('clients'));        
     }
 
     public function store()
@@ -97,7 +97,7 @@ class Clients extends Component
         $this->birth_date = $record->birth_date;
         $this->limit = $record->limit;
         $this->vendedor_id = $record->vendedor_id;
-        $this->pricelist_id = $record->limit;
+        $this->pricelist_id = $record->pricelist_id;
         $this->shoppingcontact = $record->shoppingcontact;
         $this->conditionpayment_id = $record->conditionpayment_id;
 
@@ -142,10 +142,6 @@ class Clients extends Component
         } else {
             $this->emit('alert', ['type' => 'warning', 'message' => 'Selecciona un Tercero']);
         }
-    }
-
-    public function updatedSelectAll($value)
-    {
-        $value ? $this->selectedModel = Client::pluck('id') : $this->selectedModel = [];
-    }
+    }  
+   
 }

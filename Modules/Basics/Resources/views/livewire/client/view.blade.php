@@ -3,7 +3,7 @@
       <x-otros.view-card>
         <x-slot name="title">Terceros</x-slot>
         <x-slot name="button">
-          <div class="btn-group float-right" role="group" aria-label="Basic example"> 
+          <div class="btn-group float-right" role="group" aria-label="Basic example">
             @can('usuario toggle')
                 <button class="btn btn-sm btn-primary" wire:click.prevent="$emit('toggleClient')" title="Activar o Desactivar Tercero"
                 @if ($bulkDisabled) disabled @endif><i class="fa fa-exclamation text-with"></i>
@@ -18,7 +18,7 @@
             <button class="btn btn-sm btn-primary" wire:click="$set('show', true)" title="Adicionar Tercero">
                 <i class="fa fa-plus text-with"></i>
             </button>
-            @endcan
+            @endcan             
           </div>
         </x-slot>
         <x-table.table>

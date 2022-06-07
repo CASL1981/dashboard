@@ -50,6 +50,7 @@ class BasicsDatabaseSeeder extends Seeder
         
         Destination::factory(20)->create();
         $this->call(EmployeeTableSeeder::class);
+        $this->call(PaymentTableSeeder::class);
         $this->call(ClientTableSeeder::class);
     }
 }

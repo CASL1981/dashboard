@@ -27,4 +27,16 @@ class Client extends Model
             '0' => 'danger',
         ][$this->status] ?? 'info';
     }
+
+    public function QueryTable($keyWord = null, $sortField, $sortDirection)
+    {
+        return $this->select('id','identification', 'first_name', 'last_name', 'client_name','status', 'type_document', 
+                            'address', 'phone', 'cel_phone', 'entry_date', 'email', 'gender', 'birth_date', 'limit',
+                            'vendedor_id', 'pricelist_id', 'shoppingcontact', 'conditionpayment_id')
+        ->search('identification', $keyWord)
+        ->search('first_name', $keyWord)
+        ->search('last_name', $keyWord)
+        ->search('client_name', $keyWord)
+        ->orderBy($sortField, $sortDirection); 
+    }
 }

@@ -14,6 +14,12 @@ class Destinations extends Component
 
     public $costcenter, $name, $address, $phone, $location, $minimun, $maximun;
 
+    public function mount()
+    {                   
+        $this->model = 'Modules\Basics\Entities\Destination';
+        $this->exportable ='App\Exports\DestinationsExport';
+    }
+
     protected function rules() 
     {
         return [
@@ -31,11 +37,9 @@ class Destinations extends Component
     {
         $this->bulkDisabled = count($this->selectedModel) < 1;
 
-        $destinations = Destination::search('name', $this->keyWord)
-        ->search('costcenter', $this->keyWord)
-        ->search('address', $this->keyWord)
-        ->orderBy($this->sortField, $this->sortDirection)
-        ->paginate(10);
+        $destinations = new Destination();
+
+        $destinations = $destinations->QueryTable($this->keyWord, $this->sortField, $this->sortDirection)->paginate(10);
 
         return view('basics::livewire.destination.view', compact('destinations'));
     }
@@ -77,10 +81,6 @@ class Destinations extends Component
             $this->resetInput();            
     		$this->emit('alert', ['type' => 'success', 'message' => 'Destination actualizado']);
         }
-    }   
+    }  
 
-    public function updatedSelectAll($value)
-    {
-        $value ? $this->selectedModel = Destination::pluck('id') : $this->selectedModel = [];
-    }
 }

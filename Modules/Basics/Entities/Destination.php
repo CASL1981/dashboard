@@ -17,4 +17,13 @@ class Destination extends Model
     {
         return \Modules\Basics\Database\factories\DestinationFactory::new();
     }
+
+    public function QueryTable($keyWord = null, $sortField, $sortDirection)
+    {
+        return $this->select('id','costcenter', 'name', 'address', 'phone', 'location', 'minimun', 'maximun')
+        ->search('name', $keyWord)
+        ->search('costcenter', $keyWord)
+        ->search('address', $keyWord)        
+        ->orderBy($sortField, $sortDirection);         
+    }
 }

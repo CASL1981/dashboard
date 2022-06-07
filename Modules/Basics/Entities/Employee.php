@@ -27,4 +27,15 @@ class Employee extends Model
             '0' => 'danger',
         ][$this->status] ?? 'info';
     }
+
+    
+    public function QueryTable($keyWord = null, $sortField, $sortDirection)
+    {
+        return $this->select('id','identification', 'first_name', 'last_name','status', 'type_document', 
+                            'address', 'phone', 'cel_phone', 'entry_date', 'email', 'gender', 'birth_date',
+                            'location_id')        
+        ->search('first_name', $keyWord)
+        ->search('last_name', $keyWord)
+        ->orderBy($sortField, $sortDirection); 
+    }
 }

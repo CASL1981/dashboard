@@ -2,7 +2,8 @@
 
 namespace App\Traits;
 
-
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\Response;
 trait TableLivewire
 {
 
@@ -14,6 +15,8 @@ trait TableLivewire
     public $selected_id;
     public $keyWord;
     public $show = false; //varible que controla el modal
+    public $model; //modelo de la tabla
+    public $exportable; //clase exportable de laravel excel
     
     protected $paginationTheme = 'bootstrap';
     
@@ -52,7 +55,23 @@ trait TableLivewire
     {		
         $this->resetErrorBag();
         $this->resetValidation();
-        $this->reset();
+        // $this->reset();
+        $this->resetExcept(['model', 'exportable', 'keyWord']);
     }
+    
+    public function updatedSelectAll($value)
+    {
+        $value ? $this->selectedModel = $this->model::pluck('id') : $this->selectedModel = [];
+    }
+    
+    public function export($ext)
+    {        
+        abort_if(!in_array($ext, ['csv', 'xlsx', 'pdf']), Response::HTTP_NOT_FOUND);
+        
+        $query = new $this->model;
+        
+        $query = $query->QueryTable($this->keyWord, $this->sortField, $this->sortDirection)->get();
 
+        return Excel::download(new $this->exportable($query), 'filename.' . $ext);
+    }
 }

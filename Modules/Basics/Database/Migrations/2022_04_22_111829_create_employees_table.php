@@ -15,7 +15,7 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('basic_employees', function (Blueprint $table) {
             $table->id();
-            $table->integer('identification');
+            $table->integer('identification')->unique();
             $table->string('first_name', 100);            
             $table->string('last_name', 100);            
             $table->boolean('status')->default(false);
@@ -30,6 +30,8 @@ class CreateEmployeesTable extends Migration
             $table->date('birth_date')->nullable();            
             $table->integer('location_id')->nullable();
             $table->string('photo_path', 2048)->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
         });
     }

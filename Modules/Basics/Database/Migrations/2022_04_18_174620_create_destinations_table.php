@@ -22,7 +22,8 @@ class CreateDestinationsTable extends Migration
             $table->string('location', 20)->nullable();
             $table->integer('minimun')->nullable();
             $table->integer('maximun')->nullable();
-
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
         });
     }

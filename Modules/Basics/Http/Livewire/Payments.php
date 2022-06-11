@@ -83,4 +83,19 @@ class Payments extends Component
     		$this->emit('alert', ['type' => 'success', 'message' => 'Tipo de pagó actualizado']);
         }
     }
+
+    public function auditoria()
+    {
+        
+        if ($this->selected_id) {
+            $this->audit = Payment::with(['creator', 'editor'])->find($this->selected_id)->toArray();            
+                        
+            $this->showauditor = true;
+            
+            // $this->resetInput();            
+        } else {
+            $this->emit('alert', ['type' => 'warning', 'message' => 'Selecciona un registros']);
+        }
+        
+    }
 }

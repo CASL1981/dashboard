@@ -5,13 +5,13 @@
         <x-slot name="button">
           <div class="btn-group float-right" role="group" aria-label="Basic example">          
             @can('payment update')
-              <button class="btn btn-sm btn-secundary" wire:click="edit()" 
-              @if ($bulkDisabled) disabled @endif><i class="fa fa-edit text-primary"></i>
+              <button class="btn btn-sm btn-primary" wire:click="edit()" 
+              @if ($bulkDisabled) disabled @endif><i class="fa fa-edit text-eith"></i>
               </button>
             @endcan
             @can('payment create')
-            <button class="btn btn-sm btn-secundary" wire:click="$set('show', true)">
-                <i class="fa fa-plus text-primary"></i>
+            <button class="btn btn-sm btn-primary" wire:click="$set('show', true)">
+                <i class="fa fa-plus text-with"></i>
             </button>
             @endcan
           </div>
@@ -30,6 +30,8 @@
             <x-table.th field="quotas" class="text-center">Cuotas</x-table.th>
             <x-table.th field="typeinterval" class="text-center">Tipo Intervalo</x-table.th>
             <x-table.th field="interval" class="text-center">Intervalo</x-table.th>
+            <x-table.th>Creado</x-table.th>
+            <x-table.th>Actualizado</x-table.th>
           </x-slot>
           @forelse ($payments as $key => $item)
             <tr>
@@ -49,6 +51,8 @@
               <x-table.td class="text-center">{{ $item->quotas }}</x-table.td>
               <x-table.td class="text-center">{{ $item->typeinterval }}</x-table.td>
               <x-table.td class="text-center">{{ $item->interval }}</x-table.td>
+              <x-table.td>{{ $item->creator->firstname ?? '' }}</x-table.td>
+              <x-table.td>{{ $item->editor->firstname ?? '' }}</x-table.td>
             </tr>
           @empty
           <tr>
@@ -57,7 +61,10 @@
             </x-table.td>              
           </tr>
           @endforelse
-        @include('basics::livewire.payment.form')    
+        @include('basics::livewire.payment.form')       
+        {{-- <x-otros.modal-audit wire:model="showauditor" audit="mensage"></x-otros.modal-audit> --}}
+        {{-- <x-audit-information wire:model="showauditor" :audit="$audit"></x-audit-information> --}}
+        
         </x-table.table>
         <x-slot name="pagination">
           {!! $payments->links() !!}

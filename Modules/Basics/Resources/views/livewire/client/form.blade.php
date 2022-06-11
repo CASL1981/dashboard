@@ -61,7 +61,7 @@
                     :options="['M' => 'Masculino', 'F' => 'Femenino', 'O' => 'Otro']"></x-form.select>
                     <x-form.input-error for="gender"></x-form.input-error>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <x-form.label for="email">Email</x-form.label>
                     <x-form.input wire:model="email" maxlength="100" type="email"></x-form.input>
                     <x-form.input-error for="email"></x-form.input-error>
@@ -77,13 +77,19 @@
                     <x-form.input-error for="limit"></x-form.input-error>
                 </div>
                 <div class="form-group col-md-2">
+                    <x-form.label for="type">Tipo Tercero</x-form.label>                    
+                    <x-form.select wire:model="type" 
+                    :options="['Vendedor' => 'Vendedor', 'Cliente' => 'Cliente', 'Otro' => 'Otro']"></x-form.select>
+                    <x-form.input-error for="type"></x-form.input-error>
+                </div>
+            </div>
+            <div class="row"> 
+                <div class="form-group col-md-2">
                     <x-form.label for="vendedor_id">Vendedor</x-form.label>
                     <x-form.select wire:model="vendedor_id" 
                     :options="$vendedores"></x-form.select>
                     <x-form.input-error for="vendedor_id"></x-form.input-error>
                 </div>
-            </div>
-            <div class="row"> 
                 <div class="form-group col-md-2">
                     <x-form.label for="pricelist_id">Lista Precio</x-form.label>
                     <x-form.select wire:model="pricelist_id" 

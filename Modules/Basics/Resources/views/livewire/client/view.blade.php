@@ -43,12 +43,15 @@
             <x-table.th field="entry_date">F. Ing.</x-table.th>
             <x-table.th field="email">Email</x-table.th>
             <x-table.th field="gender">Sex</x-table.th>
+            <x-table.th field="gender">Tipo</x-table.th>
             <x-table.th field="birth_date">F. Nac.</x-table.th>
             <x-table.th field="limit">Cupo</x-table.th>
             <x-table.th field="vendedor_id">Vendedor</x-table.th>
             <x-table.th field="pricelist_id">Lista Precio</x-table.th>
             <x-table.th field="shoppingcontact">Contacto Compra</x-table.th>
             <x-table.th field="conditionpayment_id">Condición Pago</x-table.th>
+            <x-table.th>Creado</x-table.th>
+            <x-table.th>Actualizado</x-table.th>
           </x-slot>
           @forelse ($clients as $key => $item)
             <tr>
@@ -76,12 +79,15 @@
               <x-table.td>{{ $item->entry_date }}</x-table.td>
               <x-table.td>{{ $item->email }}</x-table.td>
               <x-table.td>{{ $item->gender }}</x-table.td>
+              <x-table.td>{{ $item->type }}</x-table.td>
               <x-table.td>{{ $item->birth_date }}</x-table.td>
               <x-table.td>{{ $item->limit }}</x-table.td>
               <x-table.td>{{ $item->vendedor_id }}</x-table.td>
               <x-table.td>{{ $item->pricelist_id }}</x-table.td>
               <x-table.td>{{ $item->shoppingcontact }}</x-table.td>
               <x-table.td>{{ $item->conditionpayment_id }}</x-table.td>
+              <x-table.td>{{ $item->creator->firstname ?? '' }}</x-table.td>
+              <x-table.td>{{ $item->editor->firstname ?? '' }}</x-table.td>
             </tr>
           @empty
           <tr>

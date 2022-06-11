@@ -27,7 +27,7 @@ class Employees extends Component
     protected function rules() 
     {
         return [
-            'identification' => 'required|numeric',
+            'identification' => ['required', 'numeric', Rule::unique('basic_employees')->ignore($this->selected_id)],
             'first_name' => 'required|string|max:100|min:4',
             'last_name' => 'required|string|max:100|min:4',
             'type_document' => 'required|max:2',
@@ -35,7 +35,7 @@ class Employees extends Component
             'phone' => 'nullable|digits:10',
             'cel_phone' => 'nullable|digits:10',
             'entry_date' => 'nullable|date',
-            'email' => ['nullable', 'email', 'max:100', Rule::unique('basic_employees')->ignore($this->selected_id)],            
+            'email' => ['nullable', 'email', 'max:100', Rule::unique('basic_employees')->ignore($this->selected_id)],
             'vendedor' => 'nullable',            
             'gender' => ['nullable', 'max:1', Rule::in(['M', 'F', 'O'])],
             'birth_date' => 'nullable|date',

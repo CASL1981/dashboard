@@ -4,14 +4,16 @@ namespace Modules\Basics\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Wildside\Userstamps\Userstamps;
 
 class Employee extends Model
 {
     use HasFactory;
+    use Userstamps;
 
     protected $fillable = ['identification', 'first_name', 'last_name','status', 'type_document', 
                         'address', 'phone', 'cel_phone', 'entry_date', 'email', 'gender', 'birth_date', 
-                        'location_id', 'photo_path', 'vendedor'];
+                        'location_id', 'photo_path', 'vendedor', 'created_by', 'updated_by'];
 
     protected $table = 'basic_employees';
     
@@ -33,7 +35,8 @@ class Employee extends Model
     {
         return $this->select('id','identification', 'first_name', 'last_name','status', 'type_document', 
                             'address', 'phone', 'cel_phone', 'entry_date', 'email', 'gender', 'birth_date',
-                            'location_id')        
+                            'location_id', 'created_by', 'updated_by')
+        ->with(['creator', 'editor'])
         ->search('first_name', $keyWord)
         ->search('last_name', $keyWord)
         ->orderBy($sortField, $sortDirection); 

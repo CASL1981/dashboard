@@ -10,7 +10,7 @@
                 </button>                
             @endcan         
             @can('destination update')
-              <button class="btn btn-sm btn-primary" wire:click="edit()" title="Editar Empleado"
+              <button class="btn btn-sm btn-primary" wire:click="edit()" title="Editar Empleado" data-placement="top" 
               @if ($bulkDisabled) disabled @endif><i class="fa fa-edit text-with"></i>
               </button>
             @endcan
@@ -45,6 +45,8 @@
             <x-table.th field="gender">Sex</x-table.th>
             <x-table.th field="birth_date">F. Nac.</x-table.th>
             <x-table.th field="location_id">Ubicación</x-table.th>
+            <x-table.th>Creado</x-table.th>
+            <x-table.th>Actualizado</x-table.th>
           </x-slot>
           @forelse ($employees as $key => $item)
             <tr>
@@ -73,7 +75,9 @@
               <td>{{ $item->vendedor ? 'Si' : '' }}</td>
               <x-table.td>{{ $item->gender }}</x-table.td>
               <x-table.td>{{ $item->birth_date }}</x-table.td>
-              <x-table.td>{{ $item->location_id }}</x-table.td>              
+              <x-table.td>{{ $item->location_id }}</x-table.td>
+              <x-table.td>{{ $item->creator->firstname ?? '' }}</x-table.td>
+              <x-table.td>{{ $item->editor->firstname ?? '' }}</x-table.td>
             </tr>
           @empty
           <tr>

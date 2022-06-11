@@ -17,9 +17,11 @@
                 <i class="fas fa-ellipsis-v"></i>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">
-                <h6 class="dropdown-header">Exportable</h6>
+                <h6 class="dropdown-header bg-secondary">Exportable</h6>
                 <a class="dropdown-item" href="#" wire:click="export('xlsx')" wire:loading.attr="disable">Excel</a>
-                <a class="dropdown-item" href="#" wire:click="export('csv')" wire:loading.attr="disable">CSV</a>                
+                <a class="dropdown-item" href="#" wire:click="export('csv')" wire:loading.attr="disable">CSV</a>
+                {{-- <h6 class="dropdown-header bg-secondary">Auditoria</h6>
+                <a class="dropdown-item" href="#" wire:click="auditoria" wire:loading.attr="disable">Auditoria</a> --}}
               </div>
             </div>
           </div>

@@ -15,7 +15,7 @@ class CreateClientsTable extends Migration
     {
         Schema::create('basic_clients', function (Blueprint $table) {
             $table->id();
-            $table->integer('identification');
+            $table->integer('identification')->unique();
             $table->string('first_name', 100)->nullable();            
             $table->string('last_name', 100)->nullable();
             $table->string('client_name', 100)->nullable();
@@ -27,13 +27,15 @@ class CreateClientsTable extends Migration
             $table->date('entry_date')->nullable();
             $table->string('email', 100)->nullable()->unique();
             $table->string('gender', 1)->nullable();
-            $table->string('type', 10)->nullable()->comment('Identificamos el tercero como un proveedor o cliente');            
+            $table->string('type', 10)->nullable()->comment('Identificamos el tercero como un proveedor o cliente');
             $table->date('birth_date')->nullable();            
             $table->integer('limit')->nullable()->comment('Cupo asignado al cliente o por el proveedor');
             $table->string('vendedor_id')->nullable()->comment('cedula del empleado vendedor');
-            $table->string('pricelist_id')->nullable()->comment('Id de lista de precio');
+            $table->string('typeprice_id')->nullable()->comment('Id de lista de precio');
             $table->string('shoppingcontact', 100)->nullable()->comment('contacto de compra');
             $table->string('conditionpayment_id')->nullable()->comment('Id condición de pago');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
         });
     }

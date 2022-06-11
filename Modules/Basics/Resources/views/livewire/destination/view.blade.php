@@ -5,13 +5,13 @@
       <x-slot name="button">
         <div class="btn-group float-right" role="group" aria-label="Basic example">          
           @can('destination update')
-            <button class="btn btn-sm btn-secundary" wire:click="edit()" 
-            @if ($bulkDisabled) disabled @endif><i class="fa fa-edit text-primary"></i>
+            <button class="btn btn-sm btn-primary" wire:click="edit()" 
+            @if ($bulkDisabled) disabled @endif><i class="fa fa-edit text-with"></i>
             </button>
           @endcan
           @can('destination create')
-          <button class="btn btn-sm btn-secundary" wire:click="$set('show', true)">
-              <i class="fa fa-plus text-primary"></i>
+          <button class="btn btn-sm btn-primary" wire:click="$set('show', true)">
+              <i class="fa fa-plus text-with"></i>
           </button>
           @endcan
         </div>
@@ -33,6 +33,8 @@
           <x-table.th field="location">Ubicación</x-table.th>
           <x-table.th field="minimun">Minimo</x-table.th>
           <x-table.th field="maximun">Maximo</x-table.th>
+          <x-table.th>Creado</x-table.th>
+          <x-table.th>Actualizado</x-table.th>
         </x-slot>
         @forelse ($destinations as $key => $item)
           <tr>
@@ -55,6 +57,8 @@
             <x-table.td>{{ $item->location }}</x-table.td>
             <x-table.td>{{ $item->minimun }}</x-table.td>
             <x-table.td>{{ $item->maximun }}</x-table.td>
+            <x-table.td>{{ $item->creator->firstname ?? '' }}</x-table.td>
+            <x-table.td>{{ $item->editor->firstname ?? '' }}</x-table.td>
           </tr>
         @empty
         <tr>

@@ -4,10 +4,14 @@ namespace Modules\Basics\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Wildside\Userstamps\Userstamps;
 
 class Payment extends Model
 {
     use HasFactory;
+    use Userstamps;
+
+    protected $table = 'basic_payments';
 
     protected $fillable = ['name', 'typeinterval','quotas', 'interval'];
     
@@ -19,7 +23,8 @@ class Payment extends Model
     
     public function QueryTable($keyWord = null, $sortField, $sortDirection)
     {
-        return $this->select('id','name', 'typeinterval', 'quotas', 'interval')        
+        return $this->select('id','name', 'typeinterval', 'quotas', 'interval', 'created_by', 'updated_by')        
+        ->with(['creator', 'editor'])
         ->search('name', $keyWord)
         ->orderBy($sortField, $sortDirection); 
     }

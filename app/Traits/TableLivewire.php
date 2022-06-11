@@ -15,8 +15,10 @@ trait TableLivewire
     public $selected_id;
     public $keyWord;
     public $show = false; //varible que controla el modal
+    public $showauditor = false; //varible que controla el modal de auditoria
     public $model; //modelo de la tabla
     public $exportable; //clase exportable de laravel excel
+    public $audit = []; //variable de auditoria
     
     protected $paginationTheme = 'bootstrap';
     

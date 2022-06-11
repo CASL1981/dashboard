@@ -33,10 +33,11 @@ class ClientFactory extends Factory
 			'entry_date' => Carbon::now(),
             'email' => $this->faker->unique()->safeEmail(),
 			'gender' => $this->faker->randomElement(['M', 'F']),
+			'type' => $this->faker->randomElement(['Vendedor', 'Cliente', 'Otro']),
 			'birth_date' => Carbon::now(),			
 			'limit' => 1000000,
 			'vendedor_id' => 1,
-			'pricelist_id' => 1,
+			'typeprice_id' => $this->faker->numberBetween(1, 20),
 			'shoppingcontact' => 'Rango',
 			'conditionpayment_id' => $this->faker->numberBetween(1, 20),
         ];

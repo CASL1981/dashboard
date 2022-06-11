@@ -4,14 +4,16 @@ namespace Modules\Basics\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Wildside\Userstamps\Userstamps;
 
 class Client extends Model
 {
     use HasFactory;
+    use Userstamps;
 
     protected $fillable = ['identification', 'first_name', 'last_name', 'client_name','status', 'type_document', 
-                        'address', 'phone', 'cel_phone', 'entry_date', 'email', 'gender', 'birth_date', 'limit',
-                        'vendedor_id', 'pricelist_id', 'shoppingcontact', 'conditionpayment_id'];
+                        'address', 'phone', 'cel_phone', 'entry_date', 'email', 'gender', 'type', 'birth_date', 'limit',
+                        'vendedor_id', 'typeprice_id', 'shoppingcontact', 'conditionpayment_id', 'created_by', 'updated_by'];
 
     protected $table = 'basic_clients';
     
@@ -31,8 +33,9 @@ class Client extends Model
     public function QueryTable($keyWord = null, $sortField, $sortDirection)
     {
         return $this->select('id','identification', 'first_name', 'last_name', 'client_name','status', 'type_document', 
-                            'address', 'phone', 'cel_phone', 'entry_date', 'email', 'gender', 'birth_date', 'limit',
-                            'vendedor_id', 'pricelist_id', 'shoppingcontact', 'conditionpayment_id')
+                            'address', 'phone', 'cel_phone', 'entry_date', 'email', 'gender', 'type', 'birth_date', 'limit',
+                            'vendedor_id', 'typeprice_id', 'shoppingcontact', 'conditionpayment_id', 'created_by', 'updated_by')
+        ->with(['creator', 'editor'])
         ->search('identification', $keyWord)
         ->search('first_name', $keyWord)
         ->search('last_name', $keyWord)

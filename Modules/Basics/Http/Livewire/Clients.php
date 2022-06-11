@@ -15,7 +15,7 @@ class Clients extends Component
     use TableLivewire;
 
     public $identification, $first_name, $last_name, $client_name, $status, $type_document, $address, $phone; 
-    public $cel_phone, $entry_date, $email, $gender, $birth_date, $limit, $vendedor_id, $pricelist_id;
+    public $cel_phone, $entry_date, $email, $gender, $type, $birth_date, $limit, $vendedor_id, $typeprice_id;
     public $shoppingcontact, $conditionpayment_id;
     public $vendedores;    
 
@@ -33,7 +33,7 @@ class Clients extends Component
     protected function rules() 
     {
         return [
-            'identification' => 'required|numeric',
+            'identification' => ['required', 'numeric', Rule::unique('basic_clients')->ignore($this->selected_id)],
             'first_name' => 'nullable|string|max:100|min:4',
             'last_name' => 'nullable|string|max:100|min:4',
             'client_name' => 'nullable|string|max:100|min:4',
@@ -44,10 +44,11 @@ class Clients extends Component
             'entry_date' => 'nullable|date',            
             'email' => ['nullable', 'email', 'max:100', Rule::unique('basic_clients')->ignore($this->selected_id)],            
             'gender' => ['nullable', 'max:1', Rule::in(['M', 'F', 'O'])],
+            'type' => ['nullable', 'max:10', Rule::in(['Vendedor', 'Cliente', 'Otro'])],
             'birth_date' => 'nullable|date',
             'limit' => 'nullable',
             'vendedor_id' => 'nullable',
-            'pricelist_id' => 'nullable',
+            'typeprice_id' => 'nullable',
             'shoppingcontact' => 'nullable|max:100',
             'conditionpayment_id' => 'nullable'
         ];
@@ -94,10 +95,11 @@ class Clients extends Component
         $this->entry_date = $record->entry_date;
         $this->email = $record->email;
         $this->gender = $record->gender;
+        $this->type = $record->type;
         $this->birth_date = $record->birth_date;
         $this->limit = $record->limit;
         $this->vendedor_id = $record->vendedor_id;
-        $this->pricelist_id = $record->pricelist_id;
+        $this->typeprice_id = $record->typeprice_id;
         $this->shoppingcontact = $record->shoppingcontact;
         $this->conditionpayment_id = $record->conditionpayment_id;
 

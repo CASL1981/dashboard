@@ -13,12 +13,14 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('basic_payments', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100)->comment('Nombre de la condición de pago');
             $table->smallInteger('quotas')->nullable()->comment('Numero de cuotas');
             $table->string('typeinterval', 1)->nullable()->comment('Tipo de intervalos, Diario, Semanal, mensual');
             $table->smallInteger('interval')->nullable()->comment('intervalos de días de la condición de pago');
+            $table->unsignedBigInteger('created_by')->nullable();
+            $table->unsignedBigInteger('updated_by')->nullable();            
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreatePaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('basic_payments');
     }
 }

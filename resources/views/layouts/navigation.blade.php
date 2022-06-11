@@ -1,8 +1,10 @@
 
   <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar ">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-      <a class="navbar-brand brand-logo" href="/dashboard" style="width: 80px;"><img src="{{ asset('images/icon.png') }}" alt="logo"/></a>      
-      <a class="navbar-brand brand-logo-mini" href="/dashboard"><img src="{{ asset('images/icon.png') }}" alt="logo"/></a>
+      <a class="text-white navbar-brand brand-logo" href="/dashboard" style="width: 80px;"><img src="{{ asset('images/icon.png') }}" alt="logo"/>
+        <h5 class="d-flex align-items-center">COCOO V2</h5>
+      </a>
+      <a class="navbar-brand brand-logo-mini" href="/dashboard"><img src="{{ asset('images/icon.png') }}" alt="logo"/></a>      
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-stretch">
       <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">

@@ -16234,7 +16234,8 @@ dl li {
   font-size: 43px;
   margin-right: 0;
 } .navbar.default-layout-navbar {
-    background: linear-gradient(85deg, #392c70, #6a005b);
+    /* background: linear-gradient(85deg, #392c70, #6a005b); */
+    background: linear-gradient(85deg, #0000FF, #00008C);
 } .navbar.default-layout-navbar .navbar-menu-wrapper .navbar-toggler {
     color: white;
 } .tableFixHead          { overflow: auto; height: 400px; } .tableFixHead thead th { position: -webkit-sticky; position: sticky; top: 0; z-index: 1; } .tableFixHead tbody th { position: -webkit-sticky; position: sticky; left: 0; } /* Just common table stuff. Really. */ table  { border-collapse: collapse; width: 100%; } /* th, td { padding: 8px 16px; } */ th     { background:#eee; } .settings-panel { 

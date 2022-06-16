@@ -6,11 +6,6 @@ use Illuminate\View\Component;
 
 class AuditInformation extends Component
 {
-    /**
-    * The alert type.
-    *
-    * @var array
-    */
     public $audit;
 
     /**
@@ -30,6 +25,6 @@ class AuditInformation extends Component
      */
     public function render()
     {
-        return view('components.audit-information', ['audit' => $this->audit]);
+        return view('components.audit-information');
     }
 }

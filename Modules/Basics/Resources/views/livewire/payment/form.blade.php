@@ -11,7 +11,7 @@
                     <x-form.input-error for="name"></x-form.input-error>
                 </div>
                 <div class="form-group col-md-3">
-                    <x-form.label for="typeinterval">Dirección</x-form.label>
+                    <x-form.label for="typeinterval">Tipo Intervalo</x-form.label>
                     <x-form.input wire:model="typeinterval" maxlength="254"></x-form.input-error>
                     <x-form.input-error for="typeinterval"></x-form.input-error>
                 </div>                

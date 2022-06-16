@@ -13,6 +13,8 @@ class Destinations extends Component
     use TableLivewire;
 
     public $costcenter, $name, $address, $phone, $location, $minimun, $maximun;
+    
+    protected $listeners = 'showaudit';
 
     public function mount()
     {                   
@@ -45,7 +47,9 @@ class Destinations extends Component
     }
 
     public function store()
-    {        
+    {   
+        can('destination create'); 
+
         $validate = $this->validate();    	
         
         Destination::create($validate);        
@@ -56,7 +60,9 @@ class Destinations extends Component
     }
 
     public function edit()
-    {        
+    {   
+        can('destination update'); 
+
         $record = Destination::findOrFail($this->selected_id);
             	
         $this->costcenter = $record->costcenter;
@@ -72,6 +78,8 @@ class Destinations extends Component
 
     public function update()
     {
+        can('destination update'); 
+
         $validate = $this->validate();
 
         if ($this->selected_id) {

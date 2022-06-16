@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12 grid-margin">
-      <x-otros.view-card>
+      <x-otros.view-card :exportable="$exportable" :audit="$audit">
         <x-slot name="title">Terceros</x-slot>
         <x-slot name="button">
           <div class="btn-group float-right" role="group" aria-label="Basic example">
@@ -21,7 +21,7 @@
             @endcan             
           </div>
         </x-slot>
-        <x-table.table>
+        <x-table.table :audit="$audit">
           <x-slot name="head" model="$destinations">
             <th class="p-2">
               <div class="form-check form-check-flat form-check-primary" >

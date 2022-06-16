@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12 grid-margin">
-      <x-otros.view-card>
+      <x-otros.view-card :exportable="$exportable" :audit="$audit">
         <x-slot name="title">Condición de Pago</x-slot>
         <x-slot name="button">
           <div class="btn-group float-right" role="group" aria-label="Basic example">          
@@ -16,7 +16,7 @@
             @endcan
           </div>
         </x-slot>
-        <x-table.table>
+        <x-table.table :audit="$audit">
           <x-slot name="head" model="$payments">
             <th class="p-2" width="40px">
               <div class="form-check form-check-flat form-check-primary" >
@@ -29,9 +29,7 @@
             <x-table.th field="name">Descripción</x-table.th>
             <x-table.th field="quotas" class="text-center">Cuotas</x-table.th>
             <x-table.th field="typeinterval" class="text-center">Tipo Intervalo</x-table.th>
-            <x-table.th field="interval" class="text-center">Intervalo</x-table.th>
-            <x-table.th>Creado</x-table.th>
-            <x-table.th>Actualizado</x-table.th>
+            <x-table.th field="interval" class="text-center">Intervalo</x-table.th>            
           </x-slot>
           @forelse ($payments as $key => $item)
             <tr>
@@ -50,9 +48,7 @@
               <x-table.td>{{ $item->name }}</x-table.td>
               <x-table.td class="text-center">{{ $item->quotas }}</x-table.td>
               <x-table.td class="text-center">{{ $item->typeinterval }}</x-table.td>
-              <x-table.td class="text-center">{{ $item->interval }}</x-table.td>
-              <x-table.td>{{ $item->creator->firstname ?? '' }}</x-table.td>
-              <x-table.td>{{ $item->editor->firstname ?? '' }}</x-table.td>
+              <x-table.td class="text-center">{{ $item->interval }}</x-table.td>              
             </tr>
           @empty
           <tr>
@@ -61,10 +57,7 @@
             </x-table.td>              
           </tr>
           @endforelse
-        @include('basics::livewire.payment.form')       
-        {{-- <x-otros.modal-audit wire:model="showauditor" audit="mensage"></x-otros.modal-audit> --}}
-        {{-- <x-audit-information wire:model="showauditor" :audit="$audit"></x-audit-information> --}}
-        
+        @include('basics::livewire.payment.form')
         </x-table.table>
         <x-slot name="pagination">
           {!! $payments->links() !!}

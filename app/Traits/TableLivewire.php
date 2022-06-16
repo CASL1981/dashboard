@@ -56,8 +56,7 @@ trait TableLivewire
     private function resetInput()
     {		
         $this->resetErrorBag();
-        $this->resetValidation();
-        // $this->reset();
+        $this->resetValidation();        
         $this->resetExcept(['model', 'exportable', 'keyWord']);
     }
     
@@ -75,5 +74,21 @@ trait TableLivewire
         $query = $query->QueryTable($this->keyWord, $this->sortField, $this->sortDirection)->get();
 
         return Excel::download(new $this->exportable($query), 'filename.' . $ext);
+    }
+
+    public function auditoria()
+    {        
+        if ($this->selected_id) {
+            $this->audit = $this->model::with(['creator', 'editor'])->find($this->selected_id)->toArray();                        
+            $this->showauditor = true;
+        } else {
+            $this->emit('alert', ['type' => 'warning', 'message' => 'Selecciona un registros']);
+        }
+        
+    }
+    
+    public function showaudit()
+    {
+        $this->showauditor = false;
     }
 }

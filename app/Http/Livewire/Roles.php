@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Traits\TableLivewire;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class Roles extends Component
@@ -15,8 +14,7 @@ class Roles extends Component
     use TableLivewire;
 
     public $name;    
-    public $role;
-    // public $show = false;
+    public $role;    
 
     protected $listeners = ['deleteRole'];
 
@@ -42,12 +40,6 @@ class Roles extends Component
 
         return view('livewire.role.view', compact('roles'));
     }
-
-    // public function closed()
-    // {
-    //     $this->cancel();
-    //     $this->show = false;
-    // }
 
     public function store()
     {

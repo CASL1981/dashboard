@@ -13,6 +13,8 @@ class Payments extends Component
     use TableLivewire;
 
     public $name, $quotas, $typeinterval, $interval;
+        
+    protected $listeners = 'showaudit';
 
     public function mount()
     {                   
@@ -82,20 +84,5 @@ class Payments extends Component
             $this->resetInput();            
     		$this->emit('alert', ['type' => 'success', 'message' => 'Tipo de pagó actualizado']);
         }
-    }
-
-    public function auditoria()
-    {
-        
-        if ($this->selected_id) {
-            $this->audit = Payment::with(['creator', 'editor'])->find($this->selected_id)->toArray();            
-                        
-            $this->showauditor = true;
-            
-            // $this->resetInput();            
-        } else {
-            $this->emit('alert', ['type' => 'warning', 'message' => 'Selecciona un registros']);
-        }
-        
     }
 }

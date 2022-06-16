@@ -16,7 +16,7 @@ class Employees extends Component
     public $identification, $first_name, $last_name, $status, $type_document, $address, $phone; 
     public $cel_phone, $entry_date, $email, $gender, $birth_date, $location_id, $photo_path, $vendedor;
 
-    protected $listeners = ['toggleEmployee'];
+    protected $listeners = ['toggleEmployee', 'showaudit'];       
 
     public function mount()
     {                   

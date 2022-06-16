@@ -1,4 +1,4 @@
-@props(['id', 'maxWidth'])
+@props(['id', 'maxWidth', 'audit'])
 
 @php
 $id = $id ?? md5($attributes->wire('model'));
@@ -31,8 +31,12 @@ $maxWidth = [
         });
 
         el.addEventListener('hide.bs.modal', function (event) {
-          showauditor = false
+          showauditor = false;          
         })
+
+        $('#modal-id-{{ $id }}').on('hidden.bs.modal', function() {            
+            Livewire.emit('showaudit');
+          })
     }"
     wire:ignore.self
     class="modal fade"
@@ -55,8 +59,8 @@ $maxWidth = [
                     <h4 class="card-title">Creado</h4>                    
                     <div class="card card-inverse-success" id="context-menu-multi">
                         <div class="card-body">
-                        <p class="card-text">Usuario: </p>
-                        <p class="card-text">Fecha: </p>
+                            <p class="card-text">Usuario: {{$audit["creator"]["email"] ?? ''}}</p>
+                            <p class="card-text">Fecha: {{$audit["created_at"] ?? ''}}</p>
                         </div>
                     </div>
                 </div>
@@ -64,8 +68,8 @@ $maxWidth = [
                     <h4 class="card-title">Modificado</h4>                    
                     <div class="card card-inverse-warning" id="context-menu-multi">
                         <div class="card-body">
-                            <p class="card-text">Usuario: </p>
-                            <p class="card-text">Fecha: </p>
+                            <p class="card-text">Usuario: {{$audit["editor"]["email"] ?? ''}}</p>
+                            <p class="card-text">Fecha: {{$audit["updated_at"] ?? ''}}</p>                  
                         </div>
                     </div>
                 </div>
@@ -73,8 +77,8 @@ $maxWidth = [
                     <h4 class="card-title">Eliminado</h4>                    
                     <div class="card card-inverse-danger" id="context-menu-multi">
                         <div class="card-body">
-                            <p class="card-text">Usuario: </p>
-                            <p class="card-text">Fecha: </p>                        
+                            <p class="card-text">Usuario: {{$audit["destroyer"]["email"] ?? ''}}</p>
+                            <p class="card-text">Fecha: {{$audit["deleted_at"] ?? ''}}</p>                       
                         </div>
                     </div>
                 </div>

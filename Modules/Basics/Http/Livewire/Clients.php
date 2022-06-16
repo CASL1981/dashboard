@@ -19,7 +19,7 @@ class Clients extends Component
     public $shoppingcontact, $conditionpayment_id;
     public $vendedores;    
 
-    protected $listeners = ['toggleClient'];
+    protected $listeners = ['toggleClient', 'showaudit'];
     
     public function mount()
     {

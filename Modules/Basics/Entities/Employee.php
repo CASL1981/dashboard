@@ -30,6 +30,10 @@ class Employee extends Model
         ][$this->status] ?? 'info';
     }
 
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d h:m:s',
+        'updated_at' => 'datetime:d-m-Y h:m:s',
+    ];
     
     public function QueryTable($keyWord = null, $sortField, $sortDirection)
     {

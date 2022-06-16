@@ -20,11 +20,11 @@ class DestinationFactory extends Factory
     public function definition()
     {
         return [
-            'costcenter' => $this->faker->randomElement(['1', '1100', '1200', '1300', '1400', '1500', '1600', '1700']),
-            'name' => $this->faker->name(),
+            'costcenter' => $this->faker->randomElement(['1', '1100', '1200', '1300', '1400', '1500', '1600']),
+            'name' => $this->faker->randomElement(['OFICINA PRINCIPAL', 'FARMACIA VALENCI', 'FARMACIA LORICA', 'FARMACIA MONTELIBANO', 'FARMACIA MONTERIA', 'FARMACIA PLANETA', 'FARMACIA SAN ANTERO']),
             'address' => $this->faker->address(),
             'phone' => $this->faker->phoneNumber(),
-            'location' => $this->faker->randomElement(['1', '1100', '1200', '1300', '1400', '1500', '1600', '1700']),
+            'location' => $this->faker->randomElement(['1', '1100', '1200', '1300', '1400', '1500', '1600']),
             'minimun' => 1,
             'maximun' => 10
         ];

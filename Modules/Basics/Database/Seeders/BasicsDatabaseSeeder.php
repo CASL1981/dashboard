@@ -2,10 +2,8 @@
 
 namespace Modules\Basics\Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Basics\Entities\Destination;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -47,8 +45,8 @@ class BasicsDatabaseSeeder extends Seeder
         }        
                 
         $admin->syncPermissions(Permission::all());       
-        
-        Destination::factory(20)->create();
+                
+        $this->call(DestinationTableSeeder::class);
         $this->call(EmployeeTableSeeder::class);
         $this->call(PaymentTableSeeder::class);
         $this->call(ClientTableSeeder::class);

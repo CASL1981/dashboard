@@ -11,13 +11,10 @@
         </div>
         <div class="col-sm-12 col-md-4">
           <div class="btn-group float-right" role="group" aria-label="Basic example">
-            {{ $button }}
-            {{-- @php
-                dd($exportable, $audit);
-            @endphp --}}
+            {{ $button }}            
             @if (isset($exportable) || isset($audit))
               <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuIconButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-primary" type="button" id="dropdownMenuIconButton6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fas fa-ellipsis-v"></i>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">

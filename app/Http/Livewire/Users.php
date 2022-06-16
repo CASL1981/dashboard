@@ -10,6 +10,7 @@ use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Modules\Basics\Entities\Destination;
 use Spatie\Permission\Models\Role;
 
 class Users extends Component
@@ -21,11 +22,14 @@ class Users extends Component
     public $firstname, $lastname, $area, $email, $status, $role_id, $destination_id, $profile_photo , $identificador;
     public $profile_photo_temp;
 
+    public $destinations = [];
+
     protected $listeners = ['toggleUser'];
 
     public function mount()
     {
-        $this->identificador = rand();        
+        $this->identificador = rand();  
+        $this->destinations =  Destination::pluck('name', 'costcenter')->toArray();     
     }
 
     protected function rules() 

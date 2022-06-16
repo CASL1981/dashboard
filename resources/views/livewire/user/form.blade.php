@@ -50,13 +50,14 @@
                   </div>                                    
                   <div class="form-group col-md-3">
                       <label for="destination_id">Centro de Costos</label>
-                      <select class="form-control" wire:model="destination_id" name="destination_id" id="destination_id" >
+                      {{-- <select class="form-control" wire:model="destination_id" name="destination_id" id="destination_id" >
                           <option value="">-- Seleccione --</option>
                           <option value="1">Oficina Principal</option>
                           <option value="1100">Farmacia Valencia</option>
                           <option value="1200">Farmacia Lorica</option>
                           <option value="1300">Farmacia Montelibano</option>
-                      </select>
+                      </select> --}}
+                      <x-form.select wire:model="destination_id" :options="$destinations"></x-form.select>
                       @error('destination_id') <span class="error text-danger">{{ $message }}</span> @enderror
                   </div>
                   <div class="form-group col-md-4">

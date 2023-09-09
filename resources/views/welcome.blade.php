@@ -12,7 +12,7 @@
         <!-- Favicons -->
         <link rel="shortcut icon" href="{{ asset('images/icon.jpg') }}" />
 
-        <!-- Fonts -->        
+        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Dosis:300,400,500,,600,700,700i|Lato:300,300i,400,400i,700,700i" rel="stylesheet">
 
         <!-- Styles -->
@@ -37,8 +37,8 @@
         <!-- Template Main CSS File -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     </head>
-    <body class="antialiased">      
-            
+    <body class="antialiased">
+
 
       <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
@@ -50,13 +50,13 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          @if (Route::has('login'))                
-              @auth                  
-                  <li><a class="nav-link scrollto active" href="{{ url('/dashboard') }}">Dashboard</a></li>                  
-              @else                  
-                  <li><a class="nav-link scrollto active" href="{{ route('login') }}">Login</a></li>                  
+          @if (Route::has('login'))
+              @auth
+                  <li><a class="nav-link scrollto active" href="{{ url('/dashboard') }}">Dashboard</a></li>
+              @else
+                  <li><a class="nav-link scrollto active" href="{{ route('login') }}">Login</a></li>
               @endauth
-                
+
             @endif
           {{-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -90,13 +90,13 @@
           <h1>Ven y Crea con Nosotros</h1>
           <h2>Accusantium quam, aliquam ultricies eget tempor id, aliquam eget nibh et. Maecen aliquam, risus at semper. Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum.</h2>
           <div>
-            @if (Route::has('login'))                
+            @if (Route::has('login'))
               @auth
                   <a href="{{ url('/dashboard') }}" class="btn-get-started scrollto">Dashboar</a>
               @else
                   <a href="{{ route('login') }}" class="btn-get-started scrollto">Inicia Aquí</a>
               @endauth
-                
+
             @endif
           </div>
         </div>
@@ -257,7 +257,7 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-         
-        
+
+
     </body>
 </html>

@@ -33,7 +33,7 @@ class ClientFactory extends Factory
 			'entry_date' => Carbon::now(),
             'email' => $this->faker->unique()->safeEmail(),
 			'gender' => $this->faker->randomElement(['M', 'F']),
-			'type' => $this->faker->randomElement(['Vendedor', 'Cliente', 'Otro']),
+			'type' => 'Otro',
 			'birth_date' => Carbon::now(),			
 			'limit' => 1000000,
 			'vendedor_id' => 1,

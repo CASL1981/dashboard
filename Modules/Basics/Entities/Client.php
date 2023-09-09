@@ -11,12 +11,12 @@ class Client extends Model
     use HasFactory;
     use Userstamps;
 
-    protected $fillable = ['identification', 'first_name', 'last_name', 'client_name','status', 'type_document', 
+    protected $fillable = ['identification', 'first_name', 'last_name', 'client_name','status', 'type_document',
                         'address', 'phone', 'cel_phone', 'entry_date', 'email', 'gender', 'type', 'birth_date', 'limit',
                         'vendedor_id', 'typeprice_id', 'shoppingcontact', 'conditionpayment_id', 'created_by', 'updated_by'];
 
     protected $table = 'basic_clients';
-    
+
     protected static function newFactory()
     {
         return \Modules\Basics\Database\factories\ClientFactory::new();
@@ -37,13 +37,13 @@ class Client extends Model
 
     public function QueryTable($keyWord = null, $sortField, $sortDirection)
     {
-        return $this->select('id','identification', 'first_name', 'last_name', 'client_name','status', 'type_document', 
+        return $this->select('id','identification', 'first_name', 'last_name', 'client_name','status', 'type_document',
                             'address', 'phone', 'cel_phone', 'entry_date', 'email', 'gender', 'type', 'birth_date', 'limit',
-                            'vendedor_id', 'typeprice_id', 'shoppingcontact', 'conditionpayment_id')
+                            'vendedor_id', 'typeprice_id', 'shoppingcontact', 'conditionpayment_id', 'created_by', 'updated_by')
         ->search('identification', $keyWord)
         ->search('first_name', $keyWord)
         ->search('last_name', $keyWord)
         ->search('client_name', $keyWord)
-        ->orderBy($sortField, $sortDirection); 
+        ->orderBy($sortField, $sortDirection);
     }
 }

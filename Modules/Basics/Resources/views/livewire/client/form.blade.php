@@ -4,7 +4,7 @@
     </x-slot>
     <x-form.form>
         <x-slot name="form">
-            <div class="row"> 
+            <div class="row">
                 <div class="form-group col-md-2">
                     <x-form.label for="identification">Identificación</x-form.label>
                     <x-form.input wire:model="identification" required maxlength="11" type="numeric"></x-form.input>
@@ -26,10 +26,10 @@
                     <x-form.input-error for="client_name"></x-form.input-error>
                 </div>
             </div>
-            <div class="row"> 
+            <div class="row">
                 <div class="form-group col-md-2">
                     <x-form.label for="type_document">Tipo Documento</x-form.label>
-                    <x-form.select wire:model="type_document" 
+                    <x-form.select wire:model="type_document"
                     :options="['CC' => 'Cedula', 'TI' => 'Tarjeta Identidad', 'RC' => 'Registro Civil', 'NIT' => 'NIT']"></x-form.select>
                     <x-form.input-error for="type_document"></x-form.input-error>
                 </div>
@@ -54,10 +54,10 @@
                     <x-form.input-error for="entry_date"></x-form.input-error>
                 </div>
             </div>
-            <div class="row"> 
+            <div class="row">
                 <div class="form-group col-md-2">
-                    <x-form.label for="gender">Genero</x-form.label>                    
-                    <x-form.select wire:model="gender" 
+                    <x-form.label for="gender">Genero</x-form.label>
+                    <x-form.select wire:model="gender"
                     :options="['M' => 'Masculino', 'F' => 'Femenino', 'O' => 'Otro']"></x-form.select>
                     <x-form.input-error for="gender"></x-form.input-error>
                 </div>
@@ -65,7 +65,7 @@
                     <x-form.label for="email">Email</x-form.label>
                     <x-form.input wire:model="email" maxlength="100" type="email"></x-form.input>
                     <x-form.input-error for="email"></x-form.input-error>
-                </div>                
+                </div>
                 <div class="form-group col-md-2">
                     <x-form.label for="birth_date">Fecha Nacimiento</x-form.label>
                     <x-form.input wire:model="birth_date" type="date"></x-form.input>
@@ -77,24 +77,24 @@
                     <x-form.input-error for="limit"></x-form.input-error>
                 </div>
                 <div class="form-group col-md-2">
-                    <x-form.label for="type">Tipo Tercero</x-form.label>                    
-                    <x-form.select wire:model="type" 
+                    <x-form.label for="type">Tipo Tercero</x-form.label>
+                    <x-form.select wire:model="type"
                     :options="['Vendedor' => 'Vendedor', 'Cliente' => 'Cliente', 'Otro' => 'Otro']"></x-form.select>
                     <x-form.input-error for="type"></x-form.input-error>
                 </div>
             </div>
-            <div class="row"> 
+            <div class="row">
                 <div class="form-group col-md-2">
                     <x-form.label for="vendedor_id">Vendedor</x-form.label>
-                    <x-form.select wire:model="vendedor_id" 
+                    <x-form.select wire:model="vendedor_id"
                     :options="$vendedores"></x-form.select>
                     <x-form.input-error for="vendedor_id"></x-form.input-error>
                 </div>
                 <div class="form-group col-md-2">
-                    <x-form.label for="pricelist_id">Lista Precio</x-form.label>
-                    <x-form.select wire:model="pricelist_id" 
+                    <x-form.label for="typeprice_id">Lista Precio</x-form.label>
+                    <x-form.select wire:model="typeprice_id"
                     :options="['1' => 'Monteria', '2' => 'Cerete', '3' => 'Lorica']"></x-form.select>
-                    <x-form.input-error for="pricelist_id"></x-form.input-error>
+                    <x-form.input-error for="typeprice_id"></x-form.input-error>
                 </div>
                 <div class="form-group col-md-2">
                     <x-form.label for="shoppingcontact">Contacto Compra</x-form.label>
@@ -103,10 +103,10 @@
                 </div>
                 <div class="form-group col-md-2">
                     <x-form.label for="conditionpayment_id">Condición Pago</x-form.label>
-                    <x-form.select wire:model="conditionpayment_id" 
+                    <x-form.select wire:model="conditionpayment_id"
                     :options="['1' => 'Contado', '2' => 'Credito 30 días', '3' => 'Credito 60 días']"></x-form.select>
                     <x-form.input-error for="conditionpayment_id"></x-form.input-error>
-                </div>                
+                </div>
             </div>
         </x-slot>
     </x-form.form>

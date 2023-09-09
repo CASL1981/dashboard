@@ -7,8 +7,8 @@
             @can('usuario toggle')
                 <button class="btn btn-sm btn-primary" wire:click.prevent="$emit('toggleClient')" title="Activar o Desactivar Tercero"
                 @if ($bulkDisabled) disabled @endif><i class="fa fa-exclamation text-with"></i>
-                </button>                
-            @endcan         
+                </button>
+            @endcan
             @can('destination update')
               <button class="btn btn-sm btn-primary" wire:click="edit()" title="Editar Tercero"
               @if ($bulkDisabled) disabled @endif><i class="fa fa-edit text-with"></i>
@@ -18,7 +18,7 @@
             <button class="btn btn-sm btn-primary" wire:click="$set('show', true)" title="Adicionar Tercero">
                 <i class="fa fa-plus text-with"></i>
             </button>
-            @endcan             
+            @endcan
           </div>
         </x-slot>
         <x-table.table :audit="$audit">
@@ -28,7 +28,7 @@
                   <label class="form-check-label text-danger" style="width:10">
                   <input type="checkbox" class="form-check-input" wire:model="selectAll">
                   <i class="input-helper"></i></label>
-              </div>                      
+              </div>
             </th>
             <x-table.th weight="80px" field="id">#</x-table.th>
             <x-table.th field="identification">Identificación</x-table.th>
@@ -55,12 +55,12 @@
           </x-slot>
           @forelse ($clients as $key => $item)
             <tr>
-              <td class="p-1">                  
+              <td class="p-1">
                 <div class="form-check form-check-flat form-check-primary">
-                <label class="form-check-label">                    
-                    <input type="checkbox" class="form-check-input" 
-                    wire:model="selectedModel" 
-                    value="{{$item->id}}" 
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input"
+                    wire:model="selectedModel"
+                    value="{{$item->id}}"
                     wire:click="$set('selected_id',{{$item->id}})"
                     >
                 <i class="input-helper"></i></label>
@@ -71,7 +71,7 @@
               <x-table.td>{{ $item->first_name }}</x-table.td>
               <x-table.td>{{ $item->last_name }}</x-table.td>
               <x-table.td>{{ $item->client_name }}</x-table.td>
-              <x-table.td>{{ $item->type_document }}</x-table.td>              
+              <x-table.td>{{ $item->type_document }}</x-table.td>
               <td><label class="text-{{ $item->status_color }}">{{ $item->status ? 'Activo' : 'Inacivo' }}</label></td>
               <x-table.td>{{ $item->address }}</x-table.td>
               <x-table.td>{{ $item->phone }}</x-table.td>
@@ -93,10 +93,10 @@
           <tr>
             <x-table.td colspan="7">
               <x-otros.error-search></x-otros.error-search>
-            </x-table.td>              
+            </x-table.td>
           </tr>
           @endforelse
-        @include('basics::livewire.client.form')    
+        @include('basics::livewire.client.form')
         </x-table.table>
         <x-slot name="pagination">
           {!! $clients->links() !!}
@@ -104,10 +104,10 @@
       </x-otros.view-card>
     </div>
   </div>
-  
+
   @push('styles')
 
   @endpush
   @push('scripts')
-   
+
   @endpush

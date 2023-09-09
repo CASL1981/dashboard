@@ -20,9 +20,9 @@ class BasicsDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-       
+
         $admin = Role::find(1);
-       
+
         $modules = [
             'destination',
             'employee',
@@ -39,15 +39,18 @@ class BasicsDatabaseSeeder extends Seeder
             'toggle'
         ];
 
-        
-        foreach($modules as $rol){            
-            foreach($permissions as $per){                
-                Permission::create(['name' => "{$rol} $per"]);
-            }            
-        }        
-                
-        $admin->syncPermissions(Permission::all());       
-        
+
+        foreach($modules as $rol){
+            foreach($permissions as $per){
+                Permission::create([
+                    'name' => "{$rol} $per",
+                    'modleo' => "{$rol}"
+                ]);
+            }
+        }
+
+        $admin->syncPermissions(Permission::all());
+
         Destination::factory(20)->create();
         $this->call(EmployeeTableSeeder::class);
         $this->call(PaymentTableSeeder::class);

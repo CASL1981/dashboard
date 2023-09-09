@@ -6,6 +6,7 @@ use App\Traits\TableLivewire;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Modules\Basics\Entities\Destination;
 use Modules\Basics\Entities\Employee;
 
 class Employees extends Component
@@ -13,18 +14,22 @@ class Employees extends Component
     use WithPagination;
     use TableLivewire;
 
-    public $identification, $first_name, $last_name, $status, $type_document, $address, $phone; 
+    public $identification, $first_name, $last_name, $status, $type_document, $address, $phone;
     public $cel_phone, $entry_date, $email, $gender, $birth_date, $location_id, $photo_path, $vendedor;
 
-    protected $listeners = ['toggleEmployee', 'showaudit'];       
+    public $destinations;
+
+    protected $listeners = ['toggleEmployee', 'showaudit'];
 
     public function mount()
-    {                   
+    {
         $this->model = 'Modules\Basics\Entities\Employee';
         $this->exportable ='App\Exports\EmployeesExport';
+
+        $this->destinations = Destination::pluck('name', 'costcenter')->toArray();
     }
-    
-    protected function rules() 
+
+    protected function rules()
     {
         return [
             'identification' => ['required', 'numeric', Rule::unique('basic_employees')->ignore($this->selected_id)],
@@ -36,13 +41,13 @@ class Employees extends Component
             'cel_phone' => 'nullable|digits:10',
             'entry_date' => 'nullable|date',
             'email' => ['nullable', 'email', 'max:100', Rule::unique('basic_employees')->ignore($this->selected_id)],
-            'vendedor' => 'nullable',            
+            'vendedor' => 'nullable',
             'gender' => ['nullable', 'max:1', Rule::in(['M', 'F', 'O'])],
             'birth_date' => 'nullable|date',
             'location_id' => 'nullable',
             'photo_path' => 'nullable'
         ];
-    }            
+    }
 
     public function render()
     {
@@ -56,23 +61,23 @@ class Employees extends Component
     }
 
     public function store()
-    {   
+    {
         can('employee create');
 
-        $validate = $this->validate();    	
-        
-        Employee::create($validate);        
-        
-        $this->resetInput();        
-    	$this->emit('alert', ['type' => 'success', 'message' => 'Empleado creado']);        
+        $validate = $this->validate();
+
+        Employee::create($validate);
+
+        $this->resetInput();
+    	$this->emit('alert', ['type' => 'success', 'message' => 'Empleado creado']);
     }
 
     public function edit()
-    {   
+    {
         can('employee update');
 
-        $record = Employee::findOrFail($this->selected_id);            
-                
+        $record = Employee::findOrFail($this->selected_id);
+
         $this->identification = $record->identification;
         $this->first_name = $record->first_name;
         $this->last_name = $record->last_name;
@@ -101,28 +106,28 @@ class Employees extends Component
     		$record = Employee::find($this->selected_id);
             $record->update($validate);
 
-            $this->resetInput();            
+            $this->resetInput();
     		$this->emit('alert', ['type' => 'success', 'message' => 'Empleado actualizado']);
         }
     }
 
     public function toggleEmployee()
     {
-        can('employee toggle');        
+        can('employee toggle');
 
         if (count($this->selectedModel)) {
             //consultamos todos los status y consultamos los modelos de los usuarios seleccionado
             $status = Employee::whereIn('id', $this->selectedModel)->get('status')->toArray();
-            $record = Employee::whereIn('id', $this->selectedModel);            
-            
+            $record = Employee::whereIn('id', $this->selectedModel);
+
             if($status[0]['status']) {
                 $record->update([ 'status' => false ]); //actualizamos los modelos
-                
+
                 $this->selectedModel = []; //limpiamos todos los usuarios seleccionados
                 $this->selectAll = false;
             } else {
                 $record->update([ 'status' => true ]);
-                
+
                 $this->selectedModel = [];
                 $this->selectAll = false;
             }
